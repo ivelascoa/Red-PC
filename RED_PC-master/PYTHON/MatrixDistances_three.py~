@@ -1,0 +1,41 @@
+# from urllib2 import Request, urlopen
+from urllib.request import Request, urlopen 
+import json
+import pandas as pd
+# from StringIO import StringIO
+from io import StringIO
+import numpy as np
+import googlemaps
+import time
+import csv
+#import matplotlib.pyplot as plt
+
+# Modify with own key
+keyJASL = 'AIzaSyDVWjCMy78Zuk244tB3duLXCK2vSn6NhTQ'
+gmaps = googlemaps.Client(key=keyJASL)
+
+file_CHIH = 'Chihuahua_grupo.csv'
+file_PUE = 'Puebla_grupo.csv'
+file_CHTUX = 'ChiapasTuxtla_grupo.csv'
+
+# Starting with Chihuahua
+Locations = []
+with open(file_CHIH,'r') as f:
+    for line in f.readlines():
+        i,j,stlat,stlon,flat,flon, dist = line.strip().split(',')
+        Locations.append([int(i),int(j),float(stlat),float(stlon),
+                          float(flat),float(flon),float(dist)])
+    f.close()
+
+for i in range(0,len(Locations)):
+    directions_result = gmaps.directions((Locations[i][2],Locations[i][3]),
+                                      (Locations[i][4],Locations[i][5]),
+                                      region = "mx")
+    directions = directions_result[0]['legs'][0]
+    Locations[i][6] = directions['distance']['value']/1000
+    print(str(Locations[i][0])+','+str(Locations[i][1])+','+
+          str(Locations[i][2])+','+str(Locations[i][3])+','+
+          str(Locations[i][4])+','+str(Locations[i][5])+','+
+          str(Locations[i][6]))
+
+# DONE!

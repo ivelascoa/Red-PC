@@ -1,0 +1,33 @@
+# from urllib2 import Request, urlopen
+from urllib.request import Request, urlopen 
+import json
+import pandas as pd
+# from StringIO import StringIO
+from io import StringIO
+import numpy as np
+import googlemaps
+import time
+import csv
+#import matplotlib.pyplot as plt
+
+# Modify with own key
+keyJASL = 'AIzaSyDVWjCMy78Zuk244tB3duLXCK2vSn6NhTQ'
+gmaps = googlemaps.Client(key=keyJASL)
+
+Locations = []
+with open('For_Python_40.csv','r') as f:
+    for line in f.readlines():
+        i,j,stlat,stlon,flat,flon, dist = line.strip().split(',')
+        Locations.append([int(i),int(j),float(stlat),float(stlon),
+                          float(flat),float(flon),float(dist)])
+    f.close()
+
+# Start with one to prove it works
+directions_result = gmaps.directions((Locations[0][2],Locations[0][3]),
+                                      (Locations[0][4],Locations[0][5]),
+                                      region = "mx")
+
+directions = directions_result[0]['legs'][0]
+Locations[0][6] = directions['distance']['value']/1000 
+                                     
+print(Locations[0])
