@@ -47,8 +47,8 @@ concentrators = nodes_CULIACAN(concentrador==true);
 
 localindx = 1:length(nodes_CULIACAN);
 for i=1:numberOfGroups
-    Dindx = dist_CHTUX(groupindx==i,groupindx==i);
-    Nindx = nodes_CHTUX(groupindx==i);
+    Dindx = dist_CULIACAN(groupindx==i,groupindx==i);
+    Nindx = nodes_CULIACAN(groupindx==i);
     Cindx = concentrators(i);
     
     Kret = esauWilliams(Dindx, Cindx, Nindx);
@@ -58,7 +58,7 @@ end
 % FULL CONECTIVITY MATRIX!!
 CM_CULIACAN(concentrador==true, concentrador==true) = Kc;
 
-cell_CULIACAN  = toCell(NOMBRES(nodes_CULIACAN), CM_CULIACAN, 'Matriz-CULIACAN-G4.csv');
+cell_CULIACAN  = toCell(NOMBRES(nodes_CULIACAN), CM_CULIACAN, 'MatricesResultingMaps/Matriz-CULIACAN-G4.csv');
 
 % Plot
 clc

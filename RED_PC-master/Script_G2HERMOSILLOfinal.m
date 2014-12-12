@@ -46,8 +46,8 @@ concentrators = nodes_HERMOSILLO(concentrador==true);
 
 localindx = 1:length(nodes_HERMOSILLO);
 for i=1:numberOfGroups
-    Dindx = dist_CHTUX(groupindx==i,groupindx==i);
-    Nindx = nodes_CHTUX(groupindx==i);
+    Dindx = dist_HERMOSILLO(groupindx==i,groupindx==i);
+    Nindx = nodes_HERMOSILLO(groupindx==i);
     Cindx = concentrators(i);
     
     Kret = esauWilliams(Dindx, Cindx, Nindx);
@@ -57,7 +57,7 @@ end
 % FULL CONECTIVITY MATRIX!!
 CM_HERMOSILLO(concentrador==true, concentrador==true) = Kc;
 
-cell_HERMOSILLO  = toCell(NOMBRES(nodes_HERMOSILLO), CM_HERMOSILLO, 'Matriz-Hermosillo-G2.csv');
+cell_HERMOSILLO  = toCell(NOMBRES(nodes_HERMOSILLO), CM_HERMOSILLO, 'MatricesResultingMaps/Matriz-Hermosillo-G2.csv');
 
 % Plot
 clc
