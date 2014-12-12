@@ -49,6 +49,7 @@ keycount = 0
 gmaps = googlemaps.Client(key=keys[keycount])
 
 fileNames = ['Chihuahua_grupo.csv',
+             'CancunMerida_grupo.csv',
              'CiudadesPrincipales_51_grupo.csv',
              'Puebla_grupo.csv',
              'ChiapasTuxtla_grupo.csv']
