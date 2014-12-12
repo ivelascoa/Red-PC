@@ -1,0 +1,31 @@
+clear all
+close all
+clc
+
+cd ./PYTHON/
+
+CSV_HERMOSILLO = csvread('Distance_HERMOSILLO_grupo.csv',0,1);
+
+cd ..
+%
+nodes_HERMOSILLO = unique([CSV_HERMOSILLO(:,1);CSV_HERMOSILLO(:,2)]);
+n_HERMOSILLO = length(nodes_HERMOSILLO);
+dist_HERMOSILLO = zeros(n_CHIH);
+
+count = 1;
+
+for i=1:n_CHIH
+    for j=i:n_CHIH
+        if i~=j
+            dist_CHIH(i,j) = CSV_CHIH(count,7);
+            count=count+1;
+        end
+    end
+end
+dist_CHIH = dist_CHIH + dist_CHIH';
+
+CHIH = [28.67113 -106.10523];
+
+clear count i j;
+
+save MAT_CHIH

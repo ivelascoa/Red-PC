@@ -28,27 +28,30 @@ keyILSE = 'AIzaSyDQwzc5u1qv9mbQ3fhZEucOy-mfa00-4WU'
 keySEBAS = 'AIzaSyDauNdiEztxXlGG6-vF0hZfX2joB0VeeS4'
 keyDIEGO = 'AIzaSyDxud7UtMczI3RDzQ4S4TbQqYRUth4xD8k'
 
-keys = [keyDIEGO,
-        keySEBAS,
-        keyILSE,
-	keyHUGO,
-	keyMARTIN,
+keys = [keyANDRE,
 	keyDAISY,
 	keyFER,
         keyROD,
+        keyDIEGO,
+        keySEBAS,
+        keyILSE,
+	keyHUGO,	
         #keyJOAN,
-        keyDeLINT,
+        keyDeLINT,        
+        keyMARTIN,
+        keyMAYTE,        
         keyIVI,
-        keyOros,
-        keyMAYTE,
         keyJASL,
-        keyANDRE, 
+        keyOros,
         keyISAAC]
 
 keycount = 0
 gmaps = googlemaps.Client(key=keys[keycount])
 
 fileNames = ['Chihuahua_grupo.csv',
+             'CULIACAN_grupo.csv',
+             'CdOBREGON_grupo.csv',
+             'HERMOSILLO_grupo.csv',
              'CancunMerida_grupo.csv',
              'CiudadesPrincipales_51_grupo.csv',
              'Puebla_grupo.csv',
@@ -91,6 +94,7 @@ while i < size_Locations:
                                              (Locations['finish_lat'][i],
                                               Locations['finish_lon'][i]),
                                              region = "mx")
+
         directions = directions_result[0]['legs'][0]
     
         Locations['distance'][i] = directions['distance']['value']/1000
